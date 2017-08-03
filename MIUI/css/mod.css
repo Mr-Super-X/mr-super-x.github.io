@@ -1,0 +1,183 @@
+/*网格模块*/
+
+.m-box {
+	font-size: 0px;
+}
+
+.m-hd {
+	font-size: 20px;
+	line-height: 20px;
+	margin: 42px 0px 20px 0;
+}
+
+.m-hd::after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+.m-hdL {
+	float: left;
+}
+
+.m-hdR {
+	float: right;
+	font-size: 20px;
+}
+
+.m-hd {}
+
+.m-bd {}
+
+.m-hdR .btns2 .active {
+	color: #999;
+}
+
+.m-hdR .btns2 a {
+	display: block;
+	float: left;
+	width: 36px;
+	height: 24px;
+	border: solid #ccc 1px;
+	text-align: center;
+	line-height: 24px;
+	color: #ccc;
+}
+
+.m-hdR .btns2 a:hover {
+	color: #F87300;
+}
+
+.m-box .span4,
+.m-box .span16 {
+	font-size: 14px;
+	display: inline-block;
+	height: 100%;
+	vertical-align: top;
+}
+
+.m-box .main-pic {
+	height: 100%;
+	padding-bottom: 0px;
+}
+
+.m-box .main-pic img {
+	width: 100%;
+	height: 100%;
+}
+
+.m-box .span4 {
+	width: 19.1525%;
+}
+
+.m-box .span16 {
+	width: 80.8475%;
+}
+
+.m-box .span20 {
+	width: 100%;
+}
+
+.m-box .m-cols {
+	font-size: 0px;
+}
+
+.m-box .m-cols::after {
+	content: '';
+	display: block;
+	overflow: hidden;
+}
+
+.m-box .m-cols .col {
+	float: left;
+	font-size: 14px;
+}
+
+.m-box .m-col-3 .col {
+	margin-left: 1.6%;
+	width: 31.733333%;
+	height: 100%;
+}
+
+.m-box .m-col-4 .col {
+	margin-left: 1.3333333%;
+	width: 24%;
+	height: 100%;
+}
+
+.m-box .m-col-4 .col:first-child {
+	margin-left: 0;
+}
+
+.span4+.span16 .m-col-4 {
+	padding-left: 1.33333%;
+}
+
+.m-box .m-col-5 .col {
+	margin-left: 1.1613%;
+	width: 19.0709%;
+	height: 100%;
+}
+
+.m-box .m-col-5 .col:first-child {
+	margin-left: 0;
+}
+
+
+/*幻灯片模块*/
+
+.m-slide {
+	width: 100%;
+}
+
+.m-slide-contain {
+	font-size: 0px;
+	height: 100%;
+	text-align: center;
+}
+
+.m-slide-contain.m-s1 {
+	width: 100%;
+}
+
+.m-slide-contain.m-s2 {
+	width: 200%;
+}
+
+.m-slide-contain.m-s4 {
+	width: 400%;
+}
+
+.m-slide-contain.m-s5 {
+	width: 500%;
+}
+
+.m-slide-contain.m-s10 {
+	width: 1000%;
+}
+
+.m-slide-contain .m-slide-item {
+	display: inline-block;
+	vertical-align: top;
+	font-size: 12px;
+}
+
+.m-slide-contain.m-s1 .m-slide-item {
+	width: 100%;
+}
+
+.m-slide-contain.m-s2 .m-slide-item {
+	width: 50%;
+}
+
+.m-slide-contain.m-s4 .m-slide-item {
+	width: 25%;
+}
+
+.m-slide-contain.m-s5 .m-slide-item {
+	width: 20%;
+}
+
+.m-slide-contain.m-s10 .m-slide-item {
+	width: 10%;
+}

@@ -1,0 +1,177 @@
+@media screen and (max-width: 1227px) {
+	/*高度重置*/
+	#prod-intro .desc {
+		width: 100%;
+		font-size: 14px;
+	}
+	#main .opt-ul li {
+		width: 46%;
+		height: 50px;
+		line-height: 50px;
+		text-align: center;
+		float: left;
+		margin-right: 3%;
+		margin-bottom: 3%;
+	}
+	#main .prod-title .link {
+		margin-right: 5%;
+		font-size: 14px;
+	}
+	.parts .goods-list li {
+		width: 33%;
+		height: auto;
+		padding: .5% 0px;
+	}
+	.home .maskL {
+		padding-left: 60px
+	}
+	.maskL h2 {
+		margin-top: 30px;
+	}
+	/*页脚响应*/
+	#footer .img-list {
+		display: none;
+	}
+	#footer .footer-bottom {
+		text-align: center;
+	}
+	#footer .info {
+		float: none;
+		margin: 0 auto;
+		padding-left: 0px;
+	}
+	#footer .links {
+		margin: 0 auto;
+	}
+}
+
+@media screen and (max-width:860px) {
+	#prod-intro .opt-title .desc {
+		display: none;
+	}
+	#prod-intro .opt-ul>li {
+		margin: 0;
+		width: 90%;
+		margin: 10px 5%;
+		float: none;
+		border: none;
+	}
+}
+
+@media screen and (max-width: 760px) {
+	#prod-intro .prod-title .link {
+		display: inline-block;
+		float: none;
+	}
+}
+
+@media screen and (max-width: 720px) {
+	#header .options>a {
+		font-size: 16px;
+	}
+	.home .maskL,
+	.home .maskR {
+		width: 100%;
+		text-align: center;
+		padding: 0px;
+	}
+	.home .maskL p {
+		display: none;
+	}
+	.home .maskR ul {
+		text-align: center;
+		width: auto;
+		margin-left: auto;
+		margin-right: auto;
+		float: none;
+		font-size: 0px;
+		overflow: hidden;
+	}
+	.home .maskR li {
+		display: inline-block;
+		margin-left: 2%;
+		margin-right: 2%;
+		font-size: 14px;
+		width: 44%;
+		padding: 0px;
+	}
+	/*页脚响应*/
+	#footer .footer-middle,
+	#footer .footer-top {
+		display: none;
+	}
+	#footer .desc {
+		width: 90%;
+	}
+	#footer .links {
+		display: none;
+	}
+}
+
+@media screen and (max-width:600px) {
+	.nav {
+		display: none;
+	}
+	#prod-intro .main-right {
+		float: none;
+		width: 100%;
+	}
+	#prod-intro .intro-left {
+		width: 100%;
+		max-width: 100%;
+		float: none;
+	}
+	#prod-intro .intro-right article {
+		padding: 0 5%;
+	}
+	#prod-intro .prod-title {
+		padding: 2% 5%;
+	}
+	#prod-intro .prod-title .link {
+		float: right;
+		margin-top: 10px;
+	}
+	#prod-intro .tip {
+		font-size: 16px;
+		padding: 0 5%;
+	}
+	#prod-intro .opt-title h3 {
+		padding: 0 5%;
+	}
+	#prod-intro .opt-ul {
+		padding: 0 5%;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	#prod-intro .opt-ul li {
+		width: 100%;
+		padding: 0;
+		margin: 2.5% 0 0 0;
+	}
+	#param .option h3 {
+		padding: 30px 0;
+	}
+	#param .option .col {
+		width: 100%;
+		text-align: center;
+	}
+	#parts .goods-list {
+		width: 100%;
+		text-align: center;
+	}
+	#parts .goods-list li:first-child {
+		border-top: none;
+	}
+	#parts .goods-list li {
+		border: none;
+		width: 96%;
+		margin: 0 2%;
+		display: block;
+		height: auto;
+		border-top: solid #ccc 1px;
+	}
+	.home .maskL h2 {
+		min-width: 320px;
+	}
+}

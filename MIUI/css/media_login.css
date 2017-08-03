@@ -1,0 +1,68 @@
+@media screen and (max-width:760px) {
+	.qr-page .title {
+		margin-top: 100px;
+	}
+	.account-page .btn,
+	.qr-page .btn {
+		font-size: 16px;
+		letter-spacing: 2px;
+	}
+}
+
+@media screen and (max-width:640px) {
+	.qr-page .title {
+		margin-top: 80px;
+	}
+	.account-page .btn,
+	.qr-page .btn {
+		font-size: 18px;
+		letter-spacing: 2px;
+	}
+	#footer .options {
+		display: none;
+	}
+	#footer {
+		padding: 20px;
+		line-height: 1.5;
+		font-size: 14px;
+	}
+}
+
+@media screen and (max-width:400px) {
+	body .container {
+		min-width: auto;
+	}
+	.account-page .btn,
+	.qr-page .btn {
+		font-size: 20px;
+		letter-spacing: 2px;
+	}
+	.account-page {
+		height: auto;
+		min-height: auto;
+	}
+	.account-page .form-item {
+		max-width: 90%;
+		width: 90%;
+	}
+	.account-page .others {
+		display: none;
+	}
+	.account-page .options a {
+		font-size: 16px;
+	}
+	.account-page .footer .desc {
+		display: none;
+	}
+	.account-page {
+		padding-bottom: 0px;
+	}
+	.qr-page .wx_code {
+		width: 86%;
+		margin: 0 auto;
+	}
+	.qr-page .wx_code img {
+		width: 100%;
+		height: auto;
+	}
+}

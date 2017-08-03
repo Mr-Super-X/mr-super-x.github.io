@@ -1,0 +1,61 @@
+/*浏览器兼容*/
+
+header,
+nav,
+section,
+footer {
+	display: block;
+}
+
+
+/*公共样式设定*/
+
+body,
+ul,
+ol,
+dl,
+li,
+dt,
+dd,
+p,
+input,
+datalist,
+h1,
+h2,
+h3,
+h4,
+header,
+nav,
+section,
+footer,
+figure,
+figcaption {
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+}
+
+ol,
+ul,
+dl {
+	list-style-type: none;
+}
+
+a,
+input {
+	text-decoration: none;
+	color: inherit;
+	outline: none;
+}
+
+body,
+input,
+button {
+	font: 14px "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
+}
+
+img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
