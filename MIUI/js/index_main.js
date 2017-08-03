@@ -30,21 +30,21 @@ define(function(require, exports, module) {
 	
 			/*轮播左右点击按钮*/
 			next.on('click', function() {
-				/*autoPlay();*/
+				autoPlay();
 			})
 			prev.on('click', function() {
-				/*num--;
+				num--;
 				if(num < 0) {
 					num = slideLi.length - 1;
 				}
 				contain.css("transform", "translateX(" + -(num * slideLi.width()) + "px)");
 	
-				setPoint(num);*/
+				setPoint(num);
 			})
 	
 			/*轮播函数*/
 			function autoPlay() {
-				/*num++;
+				num++;
 				if(num > slideLi.length - 1) {
 					num = 0;
 				}
@@ -52,38 +52,7 @@ define(function(require, exports, module) {
 				contain.css("transition",'.5s')
 				contain.css("transform", "translateX(" + -(num * slideLi.width()) + "px)");			
 	
-				setPoint(num);*/
-				
-				
-				if(num==0){
-					contain.css("transition",'none')
-					contain.css("transform", "translateX(" + -(len * slideLi.width()) + "px)");
-					num = len;
-					setTimeout(function(){
-						contain.css("transition",'.5s')
-						num++;
-						contain.css("transform", "translateX(" + -(num * slideLi.width()) + "px)");
-						now = num%len;
-						setPoint(now);
-					},15)
-				}else if(num == 2*len-1){
-					contain.css("transition",'none')
-					contain.css("transform", "translateX(" + -((len-1) * slideLi.width()) + "px)");
-					num=len-1;	
-					setTimeout(function(){
-						contain.css("transition",'.5s')
-						num++;
-						now = num%len;
-						setPoint(now);
-						contain.css("transform", "translateX(" + -(num * slideLi.width()) + "px)");
-					},15)
-				}else{
-					num++;
-					now = num%len;
-					setPoint(now);
-					contain.css("transition",'.5s')
-					contain.css("transform", "translateX(" + -(num * slideLi.width()) + "px)");
-				}
+				setPoint(num);
 			}
 			
 	
