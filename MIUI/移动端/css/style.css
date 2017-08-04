@@ -71,7 +71,7 @@ body{
 	width: 2.125rem;
 	height: 1.6rem;
 	display: inline-block;
-	background: url(../img/logo_03.png);
+	background: url(../img/logo_03.png) no-repeat;
 	background-size: cover;
 	position: absolute;
 	left: 1rem;
@@ -92,7 +92,7 @@ body{
 	margin-bottom: .28rem;
 	width: 1.575rem;
 	height: 1.575rem;
-	background: url(../img/s_03.png);
+	background: url(../img/s_03.png) no-repeat;
 	background-size: cover;
 }
 #header .nav-top .searchArea input{
@@ -289,12 +289,14 @@ body{
 	margin-right: 1rem;
 }
 .left-icon img{
+	width: 1.772em;
 	position: absolute;
-	top: 0.7rem;
+	top: 1rem;
 }
 .right-icon img{
+	width: 1.772em;
 	position: absolute;
-	top: .7rem;
+	top: 1rem;
 	right: 1rem;
 }
 #classify .left-nav{
@@ -390,6 +392,9 @@ body{
 	height: 4rem;
 	line-height: 4rem;
 }
+#shopping .login-info .right-discount{
+	margin-top: 1.1rem;
+}
 #shopping .login-info span:nth-of-type(1){
 	float: left;
 }
@@ -408,7 +413,7 @@ body{
 	position: absolute;
 	width: 3.25rem;
 	height: 2.875rem;
-	background: url(../img/微信图片_20170731090247_03.png);
+	background: url(../img/car.png) no-repeat;
 	background-size: cover;
 	top: 0.5rem;
 	left: 5.2rem;
@@ -487,7 +492,7 @@ body{
 .personal .login-bg{
 	width: 100%;
 	height: 100%;
-	background: url(../img/bg_0425a88.png);
+	background: url(../img/bg_0425a88.png) no-repeat;
 	background-size: cover;
 }
 .personal .login-icon{
@@ -509,6 +514,9 @@ body{
 	height: 2.869rem;
 	line-height: 2.869rem;
 	border-bottom: 0.05rem solid #ededed;
+}
+.personal .my-order .right-discount{
+	margin-top: .6rem;
 }
 .personal .indent{
 	float: left;
@@ -536,17 +544,19 @@ body{
 	display: block;
 	width: 1.8987rem;
 	height: 1.561rem;
-	background-size: cover;
 	margin: auto;
 }
 .indent-info ul li:nth-of-type(1) .order-icon{
-	background: url(../img/新建参考线_03.png);
+	background: url(../img/icon1.png) no-repeat;
+	background-size: cover;
 }
 .indent-info ul li:nth-of-type(2) .order-icon{
-	background: url(../img/新建参考线_05.png);
+	background: url(../img/icon2.png) no-repeat;
+	background-size: cover;
 }
 .indent-info ul li:nth-of-type(3) .order-icon{
-	background: url(../img/新建参考线_07.png);
+	background: url(../img/icon3.png) no-repeat;
+	background-size: cover;
 }
 .indent-info ul li span{
 	color: #333;
@@ -571,13 +581,14 @@ body{
 	display: inline-block;
 	width: 1.476rem;
 	height: 1.772rem;
-	background: url(../img/大于号_03.png);
+	background: url(../img/gt.png) no-repeat;
 	background-size: cover;
-	margin-top: .9rem;
+	margin-top: 1rem;
 }
 .discounts .left-discount{
 	margin-top: .8rem;
-	background: url(../img/新建参考线_13.png);
+	background: url(../img/icon4.png) no-repeat;
+	background-size: cover;
 }
 .m-home{
 	margin-top: .63rem;
@@ -591,10 +602,12 @@ body{
 	border-bottom: 0.05rem solid #e1e1e1;
 }
 .m-home ul li:nth-of-type(1) .left-discount{
-	background: url(../img/新建参考线_16.png);
+	background: url(../img/icon5.png) no-repeat;
+	background-size: cover;
 }
 .m-home ul li:nth-of-type(2) .left-discount{
-	background: url(../img/新建参考线_18.png);
+	background: url(../img/icon6.png) no-repeat;
+	background-size: cover;
 }
 .setting{
 	margin-top: .63rem;
@@ -604,7 +617,8 @@ body{
 .setting .left-discount{
 	height: 1.6rem;
 	margin-top: 1rem;
-	background: url(../img/新建参考线_20.png);
+	background: url(../img/icon7.png) no-repeat;
+	background-size: cover;
 }
 
 
