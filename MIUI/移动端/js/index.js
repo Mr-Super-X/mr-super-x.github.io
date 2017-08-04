@@ -22,15 +22,6 @@ $(function(){
 	/*----------首页导航页切换结束-----------*/
 	
 	
-	
-	/*------------固定导航------------*/
-	$("#foot-nav li").tap(function(){
-		$(".wraper").eq($(this).index()).addClass("dis").siblings().removeClass("dis");
-		$(this).addClass("active").siblings().removeClass("active")
-	})
-	/*------------固定导航------------*/
-	
-	
 	/*跳转登录页面*/
 	$("#index #login").tap(function(){
 		window.location.href = "login.html";
@@ -49,6 +40,20 @@ $(function(){
 		$(this).addClass("active").siblings().removeClass("active");
 		$("html,body").scrollTop($(this).index()*$("#classify .right-content section").height());
 	})
+	
+	
+	
+	
+	/*------------固定导航------------*/
+	$("#foot-nav li").tap(function(){
+		$(".wraper").eq($(this).index()).addClass("dis").siblings().removeClass("dis");
+		$(this).addClass("active").siblings().removeClass("active");
+		$("html,body").scrollTop(0);
+	})
+	/*------------固定导航------------*/
+	
+	
+	
 	
 	
 })
