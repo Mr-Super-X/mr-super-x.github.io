@@ -2,6 +2,8 @@
 define(function(require, exports, module) {
 	require("jquery-3.2.1.js");
 	require("data.js");
+	require("vue.js");
+	
 	
 	$(function() {
 
@@ -26,35 +28,52 @@ define(function(require, exports, module) {
 				contain.html(item);
 			}
 			var slideLi = $(".contain .item");
-			var len = slideLi.length;
-	
+			
+			
 			/*轮播左右点击按钮*/
 			next.on('click', function() {
 				autoPlay();
 			})
 			prev.on('click', function() {
-				num--;
-				if(num < 0) {
-					num = slideLi.length - 1;
+				slideLi = $(".contain .item");
+				if(num == 0){
+					num = slideLi.length;
 				}
-				contain.css("transform", "translateX(" + -(num * slideLi.width()) + "px)");
+				num--;
+				
+				contain.css("transition","none")
+				contain.prepend(slideLi.last())
+				contain.css("transform","translateX(-"+slideLi.width()+"px)")
+
+				setTimeout(function(){
+					contain.css("transition",".5s")
+					contain.css("transform","translateX(0px)")
+				},30)
+				
 	
 				setPoint(num);
 			})
 	
 			/*轮播函数*/
 			function autoPlay() {
+				slideLi = $(".contain .item");
 				num++;
-				if(num > slideLi.length - 1) {
-					num = 0;
+				if(num >= slideLi.length){
+					num = 0
 				}
+				contain.css("transition","none")
+				var temp = contain.css("transform").split(",")[4]
+				if(temp){
+					contain.append(slideLi.first())
+					contain.css("transform","translateX(0px)")
+				}
+				setTimeout(function(){
+					contain.css("transition",".5s")
+					contain.css("transform","translateX(-"+slideLi.width()+"px)")
+				},30)
 				
-				contain.css("transition",'.5s')
-				contain.css("transform", "translateX(" + -(num * slideLi.width()) + "px)");			
-	
 				setPoint(num);
 			}
-			
 	
 			timer = setInterval(autoPlay, 2000);
 	
@@ -72,6 +91,7 @@ define(function(require, exports, module) {
 	
 			sildePoint.on('click', function() {
 				var index = $(this).index();
+				contain.css("transition",'.5s');
 				contain.css("transform", "translateX(" + -(index * slideLi.width()) + "px)");
 				setPoint(index);
 				num = index;
@@ -95,6 +115,7 @@ define(function(require, exports, module) {
 		/*------------主轮播结束-----------------*/
 
 		/*----------------------------------数据------------------------------------------*/
+
 
 		/*---------------头部导航---------------*/
 		(function(){
@@ -125,20 +146,7 @@ define(function(require, exports, module) {
 		})();
 		/*---------------头部导航结束---------------*/
 		
-		/*---------------搜索数据---------------*/
-		(function(){
-			var search = aData.headerRight.search;
-			var headerR = header.getElementsByClassName("header-right")[0];
-			var searchBox = headerR.getElementsByTagName("ul")[0];
-			var searStr = '';
-			for(var i=0;i<search.name.length;i++){
-				if(i<=10){
-					searStr += '<li>'+search.name[i]+'<span>'+search.piece[i]+'</span></li>';
-				}
-			}
-			searchBox.innerHTML = searStr;
-		})();
-		/*---------------搜索数据结束---------------*/
+		
 
 		/*---------------小米明星单品---------------*/
 		(function(){
@@ -462,7 +470,27 @@ define(function(require, exports, module) {
 		})();
 		/*---------------返回顶部结束---------------*/
 
-
+		
+		/*---------------搜索数据---------------*/
+		(function(){
+			
+			var vm = new Vue({
+				el:"#app1",
+				data:{
+					list:aData.headerRight.search,
+					val:""
+				},
+				methods:{
+					searchVal(ev){
+						this.val = ev.target.firstChild.innerHTML;
+					},
+				}
+			})
+			
+		})();
+		/*---------------搜索数据结束---------------*/
+		
+		
 
 	})
 

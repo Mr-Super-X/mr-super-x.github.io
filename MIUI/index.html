@@ -9,7 +9,6 @@
 		<meta name="format-detection" content="telephone=no">
 		<title>小米首页</title>
 		<!--样式部分-->
-		<link rel="stylesheet" type="text/css" href="css/reset.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<link rel="stylesheet" type="text/css" href="css/media_index.css">
 		<link rel="stylesheet" type="text/css" href="css/mod.css">
@@ -70,7 +69,7 @@
 							<a href="register.html">注册</a>
 						</li>
 						<li class="buyCar animated fadeInRight">
-							<a class="i_car" href="登录">购物车（0）</a>
+							<a class="i_car" href="">购物车（0）</a>
 							<div class="content">
 								购物车中还没有商品，赶紧选购吧！
 							</div>
@@ -404,12 +403,12 @@
 							</div>
 						</li>-->
 					</ul>
-					<div class="header-right">
-						<input type="text" class="search" list="search-record" name="search">
-						<button class="btn">搜索</button>
+					<div class="header-right" id="app1">
+						<input type="text" class="search" list="search-record" v-model="val" name="search">
+						<button class="btn" id="btn">搜索</button>
 						<ul>
-							<!--<li>小米6<span>约有11件</span></li>
-							<li>红米Note 4X<span>约有7件</span></li>
+							<li v-for="item,index in list" @click="searchVal"><span class="name">{{item.name}}</span><span>{{item.piece}}</span></li>
+							<!--<li>红米Note 4X<span>约有7件</span></li>
 							<li>小米Mix<span>约有1件</span></li>
 							<li>小米Mix2<span>约有3件</span></li>
 							<li>小米手机5c<span>约有3件</span></li>
@@ -609,7 +608,7 @@
 					<!--<div id="test">123</div>-->
 					<section class="main-right">
 						<div class="slider" id="slider">
-							<ul class="contain">
+							<ul class="contain clearFix">
 								<!--<li class="item">
 									<a href="#" alt=""><img src="./images/index_slider_pic1.jpg"></a>
 								</li>
