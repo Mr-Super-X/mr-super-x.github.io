@@ -375,7 +375,7 @@ body{
 
 /*----------------购物车----------------*/
 #shopping{
-	padding-bottom: 10rem;
+	padding-bottom: 5rem;
 }
 .shopping .title{
 	width: 100%;
@@ -475,7 +475,7 @@ body{
 	background: #f7f7f7;
 	padding-bottom: 13rem;
 }
-.my-order,.indent-info,.discounts,.m-home,.setting{
+.my-order,.indent-info,.discounts,.m-home,.setting,.aisle{
 	width: 100%;	
 	background: #fff;
 	padding: 0 1rem;
@@ -496,11 +496,11 @@ body{
 	background-size: cover;
 }
 .personal .login-icon{
-	width: 3.2rem;
-	height: 3.2rem;
+	width: 3.6rem;
+	height: 3.6rem;
 	position: absolute;
 	left: 1rem;
-	top: 1.3rem;
+	top: 1.1rem;
 	background: url(../img/login_03.png) no-repeat;
 	background-size: cover;
 }
@@ -511,9 +511,9 @@ body{
 	color: #fff;
 }
 .personal .my-order{
-	height: 2.869rem;
-	line-height: 2.869rem;
-	border-bottom: 0.05rem solid #ededed;
+	height: 3rem;
+	line-height: 3rem;
+	border-bottom: 0.01rem solid #bbb;
 }
 .personal .my-order .right-discount{
 	margin-top: .6rem;
@@ -527,8 +527,7 @@ body{
 	font-size: 1rem;
 }
 .personal .indent-info{
-	height: 6.2447rem;
-	border-top: 0.03rem solid #d7d7d7;
+	height: 7rem;
 }
 .indent-info ul li{
 	float: left;
@@ -538,7 +537,7 @@ body{
 	width: 8.3rem;
 	position: relative;
 	box-sizing: border-box;
-	padding-top: 1.2rem;
+	padding-top: 1.4rem;
 }
 .indent-info ul li .order-icon{
 	display: block;
@@ -562,10 +561,10 @@ body{
 	color: #333;
 }
 
-.discounts{
+.discounts,.setting,.aisle{
 	margin-top: 0.63rem;
 	height: 3.797468rem;
-	line-height: 3.5rem;
+	line-height: 3.79rem;
 }
 .left-discount{
 	float: left;
@@ -609,11 +608,14 @@ body{
 	background: url(../img/icon6.png) no-repeat;
 	background-size: cover;
 }
-.setting{
-	margin-top: .63rem;
-	line-height: 3.79rem;
-	height: 3.797468rem;
+.aisle .left-discount{
+	width: 2.1rem;
+	height: 2.1rem;
+	margin-top: .9rem;
+	background: url(../img/F.jpg) no-repeat;
+	background-size: cover;
 }
+
 .setting .left-discount{
 	height: 1.6rem;
 	margin-top: 1rem;
