@@ -194,7 +194,7 @@ define(function(require, exports, module) {
 				skuStr += '<div class="m-slide-item">' +
 					'<ul class="m-cols m-col-5">'
 				for(var j = 0; j < 5; j++) {
-					skuStr += '<li class="col sku-item'+skuData.classes[j]+'">' +
+					skuStr += '<li class="col sku-item  ' +skuData.classes[j]+ ' ">' +
 									'<dl class="row">' +
 									'<dt><img src="./' + skuData.image[j] + '"></dt>' +
 									'<dd class="name">' + skuData.name + '</dd>' +
@@ -388,7 +388,7 @@ define(function(require, exports, module) {
 				recoStr += '<div class="m-slide-item">' +
 					'<ul class="m-cols m-col-5">'
 					for(var j = 0; j < 5; j++) {
-						recoStr += '<li class="col sku-item  '+recoData.classes[j]+'">' +
+						recoStr += '<li class="col sku-item  ' +recoData.classes[j]+ '">' +
 										'<dl class="row">' +
 										'<dt><img src="./' + recoData.image[j] + '"></dt>' +
 										'<dd class="name">' + recoData.name + '</dd>' +
@@ -436,7 +436,7 @@ define(function(require, exports, module) {
 			var contBox = content.getElementsByClassName("m-col-4")[0];
 			var conStr = '';
 			for(var i=0;i<contData.image.length;i++){
-				conStr += '<li class="col '+contData.classes[i]+'">'+
+				conStr += '<li class="col  '+contData.classes[i]+'">'+
 								'<div class="row">'+
 									'<dl>'+
 										'<dt class="type">'+contData.type[i]+'</dt>'+
@@ -530,7 +530,7 @@ define(function(require, exports, module) {
 		(function(){
 			$(document).scroll(function(){
 				if($(document).scrollTop() >= 600 && $(document).scrollTop() <= 700){
-					$("#sku li").addClass("animated flip");
+					$("#sku .row").addClass("animated flip");
 				}else if($(document).scrollTop() >= 1200 && $(document).scrollTop() <= 1900){
 					$("#hard .span16 .col .row").addClass("animated jello");
 				}else if($(document).scrollTop() >= 1800 && $(document).scrollTop() <= 2500){

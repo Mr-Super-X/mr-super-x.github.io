@@ -163,7 +163,7 @@ body {
 .m-hd .tabs .item.active,
 .m-hd .tabs .item:hover {
 	color: #FF6700;
-	border-bottom: solid 2px #ff6700
+	border-bottom: solid 2px #ff6700;
 }
 
 
@@ -961,12 +961,12 @@ body {
 
 .mi-sku .sku-switch:checked.s1~.m-hd .btns2 .btn1 {
 	color: #666;
-	border-color: #666;
+	border-color: #bbb;
 }
 
 .mi-sku .sku-switch:checked.s2~.m-hd .btns2 .btn2 {
-	color: #999;
-	border-color: #666;
+	color: #666;
+	border-color: #bbb;
 }
 
 
@@ -1602,12 +1602,12 @@ body {
 
 .mi-recommend .recommend-switch:checked.s1~.m-hd .btns2 .btn1 {
 	color: #666;
-	border-color: #666;
+	border-color: #bbb;
 }
 
 .mi-recommend .recommend-switch:checked.s2~.m-hd .btns2 .btn2 {
 	color: #999;
-	border-color: #666;
+	border-color: #bbb;
 }
 
 
