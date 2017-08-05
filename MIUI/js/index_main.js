@@ -17,6 +17,7 @@ define(function(require, exports, module) {
 	
 			var num = 0;
 			var timer = null;
+			var temp = true;
 	
 			/*-----创建轮播图片----*/
 			var item = "";
@@ -36,41 +37,76 @@ define(function(require, exports, module) {
 			})
 			prev.on('click', function() {
 				slideLi = $(".contain .item");
-				if(num == 0){
-					num = slideLi.length;
-				}
 				num--;
+				if(num < 0) num = slideLi.length - 1;
 				
-				contain.css("transition","none")
-				contain.prepend(slideLi.last())
-				contain.css("transform","translateX(-"+slideLi.width()+"px)")
-
+				if(temp){//点击的时候先判断temp是否为true，是就让按钮的点击失效，防止双击出现bug
+					prev.attr("disabled",true);
+				}
+				setTimeout(function(){//当图片运动完以后让按钮恢复点击
+					prev.attr("disabled",false);
+				},500)
+				
+				// 运动前就操作dom
+				// 最后一张图片加到最前面，并改变ul的translate为一个li的宽度的负值
+				// 例如点击前，用户看到的是（）里的内容
+				// 点击前       (1) 2 3 4 5    translate=0
+				// 操作dom后  5 (1) 2 3 4      translate=-li.w
+				// 开始运动前 5 (1) 2 3 4      translate=-li.w
+				// 运动后       (5) 1 2 3 4    translate=0
+				// 第二次点击
+				// 点击前       (5) 1 2 3 4    translate=0
+				// 操作dom后  4 (5) 1 2 3      translate=-li.w
+				// 开始运动前 4 (5) 1 2 3      translate=-li.w
+				// 运动后       (4) 5 1 2 3    translate=0
+				contain.prepend(slideLi.last());
+				contain.css("transition","none");
+				contain.css("transform","translateX(-"+slideLi.width()+"px)");
 				setTimeout(function(){
-					contain.css("transition",".5s")
-					contain.css("transform","translateX(0px)")
+					contain.css("transition",".5s");
+					contain.css("transform","translateX(0px)");
 				},30)
 				
-	
+				console.log(num)
 				setPoint(num);
 			})
 	
 			/*轮播函数*/
 			function autoPlay() {
-				slideLi = $(".contain .item");
+				slideLi = $(".contain .item");//点击完成重新获取页面图片排序
 				num++;
 				if(num >= slideLi.length){
 					num = 0
 				}
-				contain.css("transition","none")
-				var temp = contain.css("transform").split(",")[4]
-				if(temp){
-					contain.append(slideLi.first())
-					contain.css("transform","translateX(0px)")
+				
+				if(temp){//点击的时候先判断temp是否为true，是就让按钮的点击失效，防止双击出现bug
+					next.attr("disabled",true);
 				}
+				setTimeout(function(){//当图片运动完以后让按钮恢复点击
+					next.attr("disabled",false);
+				},500)
+				
+				//点击右边按钮的时候先让ul移动一个li宽度的距离，当一张图片运动完成时进入延时器
+				contain.css("transition",".5s");
+				contain.css("transform","translateX(-"+slideLi.width()+"px)");
+				// 运动后才操作dom
+				// 点右
+				// 点击前       (1) 2 3 4 5    translate=0
+				// 开始运动前   (1) 2 3 4 5    translate=0
+				// 运动后     1 (2) 3 4 5      translate=-li.w
+				// 操作dom后    (2) 3 4 5 1    translate=0
+				// 第二次点击
+				// 点击前       (2) 3 4 5 1    translate=0
+				// 开始运动前   (2) 3 4 5 1    translate=0
+				// 运动后     2 (3) 4 5 1      translate=-li.w
+				// 操作dom后    (3) 4 5 1 2    translate=0
+				
+				//此时一张图片已经完成运动，延时器开启，取消过渡属性瞬间将ul的transtale值拉回零，这个时候在append第一张到最后一张
 				setTimeout(function(){
-					contain.css("transition",".5s")
-					contain.css("transform","translateX(-"+slideLi.width()+"px)")
-				},30)
+					contain.css("transition","none");
+					contain.css("transform","translateX(0px)");
+					contain.append(slideLi.first());
+				},500)
 				
 				setPoint(num);
 			}
@@ -158,7 +194,7 @@ define(function(require, exports, module) {
 				skuStr += '<div class="m-slide-item">' +
 					'<ul class="m-cols m-col-5">'
 				for(var j = 0; j < 5; j++) {
-					skuStr += '<li class="col sku-item animated flip '+skuData.classes[j]+'">' +
+					skuStr += '<li class="col sku-item'+skuData.classes[j]+'">' +
 									'<dl class="row">' +
 									'<dt><img src="./' + skuData.image[j] + '"></dt>' +
 									'<dd class="name">' + skuData.name + '</dd>' +
@@ -184,7 +220,7 @@ define(function(require, exports, module) {
 			for(var i = 0; i < hardData.image.length; i++) {
 				harStr += '<li class="col '+hardData.classes[i]+'">'
 				for(var j = 0; j < 2; j++) {
-					harStr += '<div class="row animated flip">' +
+					harStr += '<div class="row">' +
 								'<span class="tip blue">' + hardData.status[1] + '</span>' +
 								'<dl>' +
 								'<dt><img src="./' + hardData.image[i] + '"></dt>' +
@@ -210,7 +246,7 @@ define(function(require, exports, module) {
 				matStr += '<div class="m-slide-item">' +
 					'<ul class="m-cols m-col-4">'
 				for(var j = 0; j < matchData.contents.dapei.length; j++) {
-					matStr += '<li class="col animated flip '+matchData.classes[j]+'">' +
+					matStr += '<li class="col '+matchData.classes[j]+'">' +
 								'<div class="row" content="' + matchData.evaluate + '" from="来自于米米小aa 的评价">' +
 								'<span class="tip orange">' + matchData.status[0] + '</span>' +
 								'<dl>' +
@@ -248,7 +284,7 @@ define(function(require, exports, module) {
 				parStr += '<div class="m-slide-item">' +
 					'<ul class="m-cols m-col-4">'
 				for(var j = 0; j < partData.contents.dapei.length; j++) {
-					parStr += '<li class="col animated flip '+partData.classes[j]+'">' +
+					parStr += '<li class="col '+partData.classes[j]+'">' +
 								'<div class="row" content="' + partData.evaluate + '" from="来自于米米小aa 的评价">' +
 								'<span class="tip orange">' + partData.status[0] + '</span>' +
 								'<dl>' +
@@ -276,7 +312,7 @@ define(function(require, exports, module) {
 		})();
 		/*------------配件开始------------*/
 
-		/*------------周边开始------------*/
+/*------------周边开始------------*/
 		(function(){
 			var ambitusDate = aData.surrounding;
 			var ambitus = document.getElementById("ambitus");
@@ -286,7 +322,7 @@ define(function(require, exports, module) {
 				ambStr += '<div class="m-slide-item">' +
 					'<ul class="m-cols m-col-4">'
 				for(var j = 0; j < 3; j++) {
-					ambStr += '<li class="col animated flip '+ambitusDate.classes[i]+'">' +
+					ambStr += '<li class="col  '+ambitusDate.classes[i]+'">' +
 								'<div class="row">' +
 								'<span class="tip orange">' + ambitusDate.status[0] + '</span>' +
 								'<dl>' +
@@ -308,7 +344,7 @@ define(function(require, exports, module) {
 							'</li>';
 				}
 	
-				ambStr += '<li class="col animated flip '+ambitusDate.classes[i]+'">' +
+				ambStr += '<li class="col  '+ambitusDate.classes[i]+'">' +
 							'<div class="row">' +
 							'<span class="tip orange">' + ambitusDate.status[0] + '</span>' +
 							'<dl>' +
@@ -352,7 +388,7 @@ define(function(require, exports, module) {
 				recoStr += '<div class="m-slide-item">' +
 					'<ul class="m-cols m-col-5">'
 					for(var j = 0; j < 5; j++) {
-						recoStr += '<li class="col sku-item animated flip '+recoData.classes[j]+'">' +
+						recoStr += '<li class="col sku-item  '+recoData.classes[j]+'">' +
 										'<dl class="row">' +
 										'<dt><img src="./' + recoData.image[j] + '"></dt>' +
 										'<dd class="name">' + recoData.name + '</dd>' +
@@ -375,7 +411,7 @@ define(function(require, exports, module) {
 			var commBox = comment.getElementsByClassName("m-col-4")[0];
 			var commStr = '';
 			for(var i = 0; i < commData.image.length; i++) {
-				commStr += '<li class="col animated flip">' +
+				commStr += '<li class="col ">' +
 								'<div class="row">' +
 								'<img src="./' + commData.image[i] + '">' +
 								'<div class="content">' +
@@ -424,7 +460,7 @@ define(function(require, exports, module) {
 			var viBox = video.getElementsByClassName("m-col-4")[0];
 			var viStr = '';
 			for(var i=0;i<videoData.video.length;i++){
-				viStr += '<li class="col animated flip">'+
+				viStr += '<li class="col ">'+
 							'<div class="row">'+
 								'<div class="video">'+
 									'<label class="play-btn" for="video-switch"></label>'+
@@ -490,8 +526,32 @@ define(function(require, exports, module) {
 		})();
 		/*---------------搜索数据结束---------------*/
 		
+		/*-----------------判断滚动条的距离动态添加animite-----------------*/
+		(function(){
+			$(document).scroll(function(){
+				if($(document).scrollTop() >= 600 && $(document).scrollTop() <= 700){
+					$("#sku li").addClass("animated flip");
+				}else if($(document).scrollTop() >= 1200 && $(document).scrollTop() <= 1900){
+					$("#hard .span16 .col .row").addClass("animated jello");
+				}else if($(document).scrollTop() >= 1800 && $(document).scrollTop() <= 2500){
+					$("#match .span16 .col .row").addClass("animated swing");
+				}else if($(document).scrollTop() >= 2600 && $(document).scrollTop() <= 3000){
+					$("#parts .span16 .col").addClass("animated rubberBand");
+				}else if($(document).scrollTop() >= 3300 && $(document).scrollTop() <= 3700){
+					$("#ambitus .span16 .col").addClass("animated lightSpeedIn");
+				}else if($(document).scrollTop() >= 3900 && $(document).scrollTop() <= 4100){
+					$("#recommend .m-box .col").addClass("animated tada");
+				}else if($(document).scrollTop() >= 4400 && $(document).scrollTop() <= 4600){
+					$("#comment .m-box .col").addClass("animated rotateIn");
+				}else if($(document).scrollTop() >= 4800 && $(document).scrollTop() <= 5000){
+					$("#content .m-box .col").addClass("animated wobble");
+				}else if($(document).scrollTop() >= 5300 && $(document).scrollTop() <= 5600){
+					$("#video .m-box .col").addClass("animated zoomInDown");
+				}
+			})
+		})()
+		/*-----------------动态添加animite结束-----------------*/
 		
-
 	})
 
 })

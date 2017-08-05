@@ -146,11 +146,14 @@
 		padding-bottom: 10%;
 	}
 	#content .desc {
-		font-size: 16px;
+		font-size: 12px;
 	}
 	#content .type {
 		font-size: 20px;
 		padding-top: 15%;
+	}
+	#content .name{
+		font-size: 16px;
 	}
 	#video .row {
 		height: auto;
@@ -302,6 +305,48 @@
 	}
 }
 
+@media only screen and (min-width: 550px) and (max-width: 600px) {
+	.wraper{
+		position: relative;
+	}
+	.header-left .logo{
+		position: absolute;
+		top: 30px;
+		left: 10px;
+	}
+	.header-right{
+		width: 200px;
+		position: absolute;
+		left: 80px;
+		top: 25px;
+	}
+	.header-right .btn{
+		display: none;
+	}
+}
+
+@media only screen and (min-width: 420px) and (max-width: 550px) {
+	.wraper{
+		position: relative;
+	}
+	.header-left .logo{
+		position: absolute;
+		top: 30px;
+		left: 10px;
+	}
+	.header-right{
+		width: 200px;
+		position: absolute;
+		left: 80px;
+		top: 25px;
+	}
+	.header-right .btn{
+		display: none;
+	}
+}
+
+
+
 @media screen and (max-width:420px) {
 	/*模块响应*/
 	.m-hdR {
@@ -334,7 +379,8 @@
 		text-align: center;
 	}
 	#header .header-right ul{
-		left: 10.2%;
+		width: 78.5%;
+		left: 10.3%;
 	}
 	#header .header-right ul li{
 		text-align: left;

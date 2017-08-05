@@ -655,10 +655,7 @@ body {
 }
 
 .site-main .main-right {
-	background: #ccc;
 	width: 100%;
-	/*height:460px;*/
-	background: #ccc;
 	float: right;
 }
 
@@ -722,19 +719,22 @@ body {
 	top: 45%;
 	right: 0;
 }
-.site-main .slider .btnBox span{
+.site-main .slider .btnBox button{
 	width: 40px;
 	height: 70px;
 	line-height: 70px;
 	text-align: center;
+	border: none;
+	outline: none;
 	font-size: 35px;
 	cursor: pointer;
 	color: #D4D2D0;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
+	background: none;
 }
-.site-main .slider .btnBox span:hover{
+.site-main .slider .btnBox button:hover{
 	background: rgba(0,0,0,.5);
 	color: #fff;
 }
