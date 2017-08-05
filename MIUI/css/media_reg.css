@@ -22,7 +22,10 @@
 		width: 90%;
 		max-width: auto;
 		min-width: auto;
-		margin: 2% 5%;
+		margin: 3% 5%;
+	}
+	#reg .form-item #pwd{
+		border-bottom: 1px solid #ccc;
 	}
 	.container .check_code {
 		font-size: 0px;
@@ -31,7 +34,7 @@
 	#reg .form-item.check_code {
 		text-align: center;
 		width: 90%;
-		margin: 2p% 5%;
+		margin: 5% 5%;
 	}
 	.container .check_code>* {
 		font-size: 14px;

@@ -18,18 +18,17 @@ var aData = {
 		]
 	},
 	headerRight:{
-		search:{
-			name:[
-				"小米6","红米Note 4X","小米Mix",
-				"小米Mix2","小米手机5c","小米手环",
-				"小米盒子","小米路由器","小米充电宝",
-			],
-			piece:[
-				"约有11件","约有7件","约有1件",
-				"约有3件","约有3件","约有6件",
-				"约有19件","约有7件","约有8件",
-			]
-		}
+		search:[
+			{name:"小米6",piece:"约有11件"},
+			{name:"红米Note 4X",piece:"约有7件"},
+			{name:"小米Mix",piece:"约有1件"},
+			{name:"小米Mix2",piece:"约有3件"},
+			{name:"小米手机5c",piece:"约有6件"},
+			{name:"小米手环",piece:"约有19件"},
+			{name:"小米盒子",piece:"约有4件"},
+			{name:"小米路由器",piece:"约有7件"},
+			{name:"小米充电宝",piece:"约有8件"},	
+		]
 	},
 	starSingleProduct:{
 		title:["左","右"],

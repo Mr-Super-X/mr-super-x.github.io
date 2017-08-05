@@ -11,6 +11,9 @@
 	<link rel="stylesheet" type="text/css" href="css/login_reg.css">
 	<link rel="stylesheet" type="text/css" href="css/register.css">
 	<link rel="stylesheet" type="text/css" href="css/media_reg.css">
+	
+	<script src="js/jquery-3.2.1.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/reg.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
 	<main id="container" class="container">
@@ -21,10 +24,11 @@
 				</h1>
 				<h2 class="title">小米账号注册</h2>
 			</header>
-			<section class="section form" id="reg">
+			<section class="section form clearFix" id="reg">
 				<form name="" method="" enctype="" id="login"></form>
-				<div class="form-item accounts">
-					<input class="" type="text" name="username" placeholder="邮箱/手机号码/小米账号"/>
+				<span class="warning-info"></span>
+				<div class="form-item accounts clearFix">
+					<input class="phone" type="text" name="username" placeholder="邮箱/手机号码/小米账号"/>
 					<ul class="list">
 						<li class="item"><span class="l">中国</span><span class="r">+86</span></li>
 						<li class="item"><span class="l">中国</span><span class="r">+86</span></li>
@@ -41,7 +45,7 @@
 				<div class="form-item check_code">
 					<input type="text" name="" class="form-itemR" value="" placeholder="图片验证码"/>
 					<a href="" class="form-itemL">
-						<img src="img/check_code.png">
+						<img src="./img/check_code.png">
 					</a>
 				</div>
 				<button class="form-item btn">立即注册</button><br>

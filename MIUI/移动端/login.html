@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 	<meta name="format-detection" content="telephone=no">
@@ -10,6 +10,9 @@
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/login.css">
 	<link rel="stylesheet" type="text/css" href="css/media_login.css">
+	
+	<script src="js/jquery-3.2.1.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/login.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
 	<main id="container" class="container reg">
@@ -26,9 +29,10 @@
 			</header>
 			<section class="section">
 				<form name="" method="" enctype="" id="login"></form>
-				<input class="form-item" type="text" name="username" placeholder="邮箱/手机号码/小米账号"/><br>
-				<input class="form-item" type="password" name="password" placeholder="密码"><br>
+				<input class="form-item phone" type="text" name="username" placeholder="邮箱/手机号码/小米账号"/><br>
+				<input class="form-item pwd" type="password" name="password" placeholder="密码"><br>
 				<button class="form-item btn">立即登录</button><br>
+				<span class="warning-info">手机号格式有误！请重新输入</span>
 			</section>
 			<footer class="footer">
 				<p class="desc">
@@ -66,6 +70,9 @@
 			<a href="">English</a>
 			<a href="">常见问题</a>
 		</div>
+		<p class="desc">
+			小米公司版权所有-京ICP备10046444-京公网安备11010802020134号-京ICP证110507号
+		</p>
 	</footer>
 </body>
 </html>

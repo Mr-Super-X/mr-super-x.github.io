@@ -11,6 +11,9 @@
 	<link rel="stylesheet" type="text/css" href="css/login_reg.css">
 	<link rel="stylesheet" type="text/css" href="css/register.css">
 	<link rel="stylesheet" type="text/css" href="css/media_reg.css">
+	
+	<script src="js/jquery-3.2.1.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/reg.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
 	<main id="container" class="container">
@@ -21,10 +24,11 @@
 				</h1>
 				<h2 class="title">小米账号注册</h2>
 			</header>
-			<section class="section form" id="reg">
+			<section class="section form clearFix" id="reg">
 				<form name="" method="" enctype="" id="login"></form>
-				<div class="form-item accounts">
-					<input class="" type="text" name="username" placeholder="邮箱/手机号码/小米账号"/>
+				<span class="warning-info"></span>
+				<div class="form-item accounts clearFix">
+					<input class="phone" type="text" name="username" placeholder="邮箱/手机号码/小米账号"/>
 					<ul class="list">
 						<li class="item"><span class="l">中国</span><span class="r">+86</span></li>
 						<li class="item"><span class="l">中国</span><span class="r">+86</span></li>
@@ -36,7 +40,7 @@
 					</ul>
 				</div>
 				<div class="form-item">
-					<input class="" type="password" name="password" placeholder="密码"><br>
+					<input class="pwd" id="pwd" type="password" name="password" placeholder="密码"><br>
 				</div>
 				<div class="form-item check_code">
 					<input type="text" name="" class="form-itemR" value="" placeholder="图片验证码"/>
@@ -48,7 +52,7 @@
 			</section>
 			<footer class="footer">
 				<p class="desc">
-					<span>点击“立即注册”，即表示您同意并愿意遵守小米<a href="">用户协议</a> 和<a href="">隐私政策</a> </span>
+					<span>点击“立即注册”，即表示您同意并愿意遵守小米<a href="">用户协议</a>和<a href="">隐私政策</a> </span>
 				</p>
 			</footer>
 		</section>
@@ -60,9 +64,6 @@
 			<a href="">English</a>
 			<a href="">常见问题</a>
 		</div>
-		<p class="desc">
-			小米公司版权所有-京ICP备10046444-京公网安备11010802020134号-京ICP证110507号
-		</p>
 	</footer>
 </body>
 </html>

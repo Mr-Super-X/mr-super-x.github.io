@@ -99,7 +99,7 @@ body .container {
 }
 
 .account-page .section {
-	height: 236px;
+	height: 250px;
 	overflow: hidden;
 }
 
@@ -113,6 +113,18 @@ body .container {
 	margin-top: 15px;
 	text-indent: 15px;
 	font-size: 10px;
+}
+.account-page .warning-info{
+	display: inline-block;
+	/*width: 200px;*/
+	height: 30px;
+	margin: 5px auto 0;
+	color: red;
+	font-size: 14px;
+	text-align: center;
+	opacity: 0;
+	transition: .5s;
+	font-weight: 600 ;
 }
 
 .account-page .form-item:first-child {
