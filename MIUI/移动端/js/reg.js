@@ -5,7 +5,7 @@ $(function(){
 		if(!$(".phone").val() || !$(".pwd").val()){
 			$(".warning-info").css("opacity","1").html("请输入用户名和密码！");
 		}else if(reg1.test($(".phone").val()) && reg2.test($(".pwd").val())){
-			alert("登录成功!");
+			alert("注册成功!即将跳转登录页...");
 			window.location.href = "login.html";
 		}
 	})
