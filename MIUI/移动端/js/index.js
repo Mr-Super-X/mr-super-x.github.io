@@ -5,7 +5,8 @@ $(function(){
 		    pagination: '.swiper-pagination',
 		    spaceBetween: 30,
 		    loop: true,
-		    autoplay:2000
+		    autoplay:2000,
+		    autoplayDisableOnInteraction : false,
 		});
 	}
 	swiper();
