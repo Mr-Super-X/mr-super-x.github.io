@@ -1,4 +1,0 @@
-1.li display:inline-block 后 在其中一个li中加入文字后 li显示不同行了，使用vertical-align:top使加入文字的重心提高，解决了问题。
-2.鼠标划入白条导航条时由于加了1px的边框，要把滑入的li宽度减2px，解决鼠标划入li时，li有伸缩现象的问题。
-3.轮播图像比窗口大时，为了实现高度不变，图片不伸缩，图片还居中的方法var mywidth=document.documentElement.clientWidth*0.5||document.body.clientWidth*0.5;
-    $(".carousel .images").css({"left":mywidth,"margin-left":"-960px"});
