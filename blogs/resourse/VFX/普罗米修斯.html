@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			html {
+				overflow: hidden;
+				touch-action: none;
+				content-zooming: none;
+			}
+			
+			body {
+				position: absolute;
+				margin: 0;
+				padding: 0;
+				width: 100%;
+				height: 100%;
+				background: #000;
+			}
+			
+			canvas {
+				width: 100%;
+				height: 100%;
+				background: #000;
+				position: absolute;
+			}
+		</style>
+	</head>
+
+	<body>
+		<canvas id="" width="" height=""></canvas>
+	</body>
+
+</html>
+<script type="text/javascript">
+	! function(Math) {
+
+		"use strict";
+
+		var Arm = function(x, y, num, len) {
+			this.length = len;
+			this.num = num;
+			this.x = new Float32Array(num);
+			this.y = new Float32Array(num);
+			this.xb = new Float32Array(num);
+			this.yb = new Float32Array(num);
+			this.sx = x * 0.2;
+			this.sy = y * 0.2;
+			for(var i = 0; i < num; i++) {
+				this.x[i] = this.xb[i] = resolutionX / 2;
+				this.y[i] = this.yb[i] = 0;
+			}
+
+		};
+
+		Arm.prototype.ik = function(p0, p1) {
+
+			var xDis = this.x[p0] - this.x[p1];
+			var yDis = this.y[p0] - this.y[p1];
+			var dist = Math.sqrt(xDis * xDis + yDis * yDis);
+			this.x[p0] = this.x[p1] + xDis / dist * this.length;
+			this.y[p0] = this.y[p1] + yDis / dist * this.length;
+
+		};
+
+		Arm.prototype.anim = function() {
+
+			this.x[0] += (pointer.x - this.x[0]) * 0.1;
+			this.y[0] += (pointer.y - this.y[0]) * 0.1;
+
+			var i = 0;
+			while(++i < this.num) {
+				this.ik(i, i - 1);
+			}
+
+			ctx.beginPath();
+			ctx.globalCompositeOperation = 'lighter';
+
+			for(var i = 1; i < this.num; i++) {
+
+				var tx = this.x[i];
+				var ty = this.y[i];
+				this.x[i] += this.sx + (this.x[i] - this.xb[i]) * 0.8;
+				this.y[i] += this.sy + (this.y[i] - this.yb[i]) * 0.8;
+				this.xb[i] = tx;
+				this.yb[i] = ty;
+				ctx.lineTo(this.x[i], this.y[i]);
+
+			}
+
+			ctx.strokeStyle = "#654";
+			ctx.stroke();
+
+		};
+
+		var run = function() {
+
+			requestAnimationFrame(run);
+			ctx.clearRect(0, 0, resolutionX, resolutionY);
+			for(var i = 0, len = arms.length; i < len; i++) {
+				arms[i].anim();
+			}
+
+		};
+
+		var canvas = document.createElement('canvas');
+		var ctx = canvas.getContext('2d');
+		document.body.appendChild(canvas);
+		var resolutionX = canvas.width = canvas.offsetWidth;
+		var resolutionY = canvas.height = canvas.offsetHeight;
+		var pointer = {
+			x: resolutionX / 2,
+			y: resolutionY / 1.5,
+			move: function(e) {
+				var touchMode = e.targetTouches,
+					pointer;
+				if(touchMode) {
+					e.preventDefault();
+					pointer = touchMode[0];
+				} else pointer = e;
+				this.x = pointer.clientX * resolutionX / canvas.offsetWidth;
+				this.y = pointer.clientY * resolutionY / canvas.offsetHeight;
+			}
+		};
+		window.addEventListener('mousemove', pointer.move.bind(pointer), false);
+		canvas.addEventListener('touchmove', pointer.move.bind(pointer), false);
+
+		var arms = [];
+		var r = Math.min(resolutionX, resolutionY) / 2.5;
+		for(var i = 0; i < 360; i += 1) {
+			arms.push(
+				new Arm(
+					Math.cos(i * Math.PI / 180),
+					Math.sin(i * Math.PI / 180),
+					50,
+					r / 10
+				)
+			);
+		}
+
+		run();
+
+	}(Math);
+</script>

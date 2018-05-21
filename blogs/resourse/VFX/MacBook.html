@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			@import "https://fonts.googleapis.com/css?family=Heebo:100";
+			*,
+			*:before,
+			*:after {
+				box-sizing: border-box;
+				padding: 0;
+				margin: 0;
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+			}
+			
+			body {
+				background-color: white;
+				font-family: 'Heebo', sans-serif;
+				font-weight: 100;
+			}
+			
+			.animation-wrapper {
+				width: 100vw;
+				height: 100vh;
+				background-color: rgba(0, 0, 0, 0.05);
+				position: relative;
+				-webkit-perspective: 600px;
+				perspective: 600px;
+				overflow: hidden;
+			}
+			
+			.animation-inner {
+				position: relative;
+				width: 100%;
+				height: 100%;
+				-webkit-transform-style: preserve-3d;
+				transform-style: preserve-3d;
+				-webkit-animation: intro-animation 5s forwards;
+				animation: intro-animation 5s forwards;
+			}
+			
+			.base-top,
+			.base-bottom,
+			.base-front,
+			.base-back,
+			.base-left,
+			.base-right {
+				position: absolute;
+				top: calc(50% - 25px);
+				left: calc(50% - 100px);
+				width: 200px;
+				height: 150px;
+			}
+			
+			.base-top,
+			.base-bottom {
+				background-color: #c8c8c8;
+			}
+			
+			.base-top {
+				background-image: url(http://www.jq22.com/tp/8a739a0e-9221-4719-9ded-a9a9c8829c31.png);
+				background-size: 190px auto;
+				background-repeat: no-repeat;
+				background-position: center 15px;
+			}
+			
+			.base-top:after {
+				position: absolute;
+				content: "";
+				width: 60px;
+				height: 50px;
+				background-color: #b4b4b4;
+				border-radius: 2px;
+				bottom: 5px;
+				left: calc(50% - 30px);
+			}
+			
+			.base-bottom {
+				-webkit-transform: translateZ(6px);
+				transform: translateZ(6px);
+			}
+			
+			.base-front,
+			.base-back {
+				background-color: #bebebe;
+				height: 6px;
+			}
+			
+			.base-front {
+				-webkit-transform: rotateX(90deg) translateZ(3px) translateY(3px);
+				transform: rotateX(90deg) translateZ(3px) translateY(3px);
+			}
+			
+			.base-back {
+				-webkit-transform: rotateX(90deg) translateZ(-147px) translateY(3px);
+				transform: rotateX(90deg) translateZ(-147px) translateY(3px);
+			}
+			
+			.base-left,
+			.base-right {
+				background-color: #b4b4b4;
+				height: 6px;
+				width: 150px;
+				left: calc(50% - 75px);
+			}
+			
+			.base-left {
+				-webkit-transform: rotateY(90deg) rotateZ(90deg) translateZ(100px) translateX(72px) translateY(3px);
+				transform: rotateY(90deg) rotateZ(90deg) translateZ(100px) translateX(72px) translateY(3px);
+			}
+			
+			.base-right {
+				-webkit-transform: rotateY(90deg) rotateZ(90deg) translateZ(-100px) translateX(72px) translateY(3px);
+				transform: rotateY(90deg) rotateZ(90deg) translateZ(-100px) translateX(72px) translateY(3px);
+			}
+			
+			.screen {
+				position: absolute;
+				top: calc(50% - 175px);
+				left: calc(50% - 100px);
+				width: 200px;
+				height: 150px;
+				-webkit-transform-style: preserve-3d;
+				transform-style: preserve-3d;
+				-webkit-transition: all .5s;
+				transition: all .5s;
+				-webkit-transform-origin: bottom left;
+				transform-origin: bottom left;
+				-webkit-transform: rotateX(80deg);
+				transform: rotateX(80deg);
+				-webkit-animation: intro-screen 5s forwards;
+				animation: intro-screen 5s forwards;
+			}
+			
+			.click .screen {
+				-webkit-transform: rotateX(180deg);
+				transform: rotateX(180deg);
+			}
+			
+			.screen-front,
+			.screen-back {
+				width: 200px;
+				height: 150px;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			
+			.screen-front {
+				background-color: #3c3c3c;
+				border: 5px solid black;
+				background-image: url(http://www.jq22.com/tp/551c5028-ad36-4867-bc93-92941630ce6c.jpg);
+				background-size: 100% 100%;
+				background-position: center center;
+				overflow: hidden;
+				-webkit-backface-visibility: hidden;
+				backface-visibility: hidden;
+				-webkit-transform: rotateY(180deg);
+				transform: rotateY(180deg);
+			}
+			
+			.screen-front iframe {
+				width: 100%;
+				height: 100%;
+				display: block;
+			}
+			
+			.screen-front:before {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				content: "";
+				z-index: 3;
+			}
+			
+			.screen-front:after {
+				position: absolute;
+				content: "";
+				top: 0;
+				left: 0;
+				background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+				background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+				width: 300px;
+				height: 300px;
+				-webkit-transform: rotate(45deg) translateY(-50px) translateX(-250px);
+				transform: rotate(45deg) translateY(-50px) translateX(-250px);
+			}
+			
+			.screen-back {
+				background-color: #c8c8c8;
+				-webkit-transform: translateZ(3px);
+				transform: translateZ(3px);
+				background-image: url(http://www.jq22.com/tp/bc646315-d453-47fb-9cce-360e14fb1980.png);
+				background-size: 25px 30px;
+				background-repeat: no-repeat;
+				background-position: center center;
+			}
+			
+			.screen-left,
+			.screen-right {
+				width: 3px;
+				height: 150px;
+				position: absolute;
+				top: 0;
+				left: 0;
+				background-color: #bebebe;
+			}
+			
+			.screen-left {
+				-webkit-transform: rotateY(90deg) translateX(-1.5px);
+				transform: rotateY(90deg) translateX(-1.5px);
+			}
+			
+			.screen-right {
+				-webkit-transform: rotateY(90deg) translateX(-1.5px) translateZ(198px);
+				transform: rotateY(90deg) translateX(-1.5px) translateZ(198px);
+			}
+			
+			.screen-top,
+			.screen-bottom {
+				width: 200px;
+				height: 3px;
+				position: absolute;
+				top: 0;
+				left: 0;
+				background-color: #b4b4b4;
+			}
+			
+			.screen-top {
+				-webkit-transform: rotateX(90deg) translateY(1.5px) translateZ(1px);
+				transform: rotateX(90deg) translateY(1.5px) translateZ(1px);
+			}
+			
+			.screen-bottom {
+				-webkit-transform: rotateX(90deg) translateY(1.5px) translateZ(-148px);
+				transform: rotateX(90deg) translateY(1.5px) translateZ(-148px);
+			}
+			
+			@-webkit-keyframes intro-animation {
+				0% {
+					-webkit-transform: rotateY(0deg) rotateX(-45deg);
+					transform: rotateY(0deg) rotateX(-45deg);
+				}
+				100% {
+					-webkit-transform: rotateY(180deg) rotateX(-90deg);
+					transform: rotateY(180deg) rotateX(-90deg);
+				}
+			}
+			
+			@keyframes intro-animation {
+				0% {
+					-webkit-transform: rotateY(0deg) rotateX(-45deg);
+					transform: rotateY(0deg) rotateX(-45deg);
+				}
+				100% {
+					-webkit-transform: rotateY(180deg) rotateX(-90deg);
+					transform: rotateY(180deg) rotateX(-90deg);
+				}
+			}
+			
+			@-webkit-keyframes intro-screen {
+				0% {
+					-webkit-transform: rotateX(180deg);
+					transform: rotateX(180deg);
+				}
+				100% {
+					-webkit-transform: rotateX(80deg);
+					transform: rotateX(80deg);
+				}
+			}
+			
+			@keyframes intro-screen {
+				0% {
+					-webkit-transform: rotateX(180deg);
+					transform: rotateX(180deg);
+				}
+				100% {
+					-webkit-transform: rotateX(80deg);
+					transform: rotateX(80deg);
+				}
+			}
+			
+			footer {
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				padding: 20px;
+				z-index: 2;
+				text-align: right;
+			}
+			
+			footer a {
+				text-decoration: none;
+				color: black;
+			}
+			
+			header {
+				position: fixed;
+				top: 0;
+				left: 0;
+				padding: 20px;
+				z-index: 4;
+			}
+			
+			header h1 {
+				font-weight: 100;
+			}
+		</style>
+		<script src="js/jquery-3.2.1.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<header>
+			<h1>Pure CSS MacBook</h1>
+		</header>
+
+		<div class="animation-wrapper">
+			<div class="animation-inner">
+				<div class="base-top"></div>
+				<div class="base-bottom"></div>
+				<div class="base-left"></div>
+				<div class="base-right"></div>
+				<div class="base-front"></div>
+				<div class="base-back"></div>
+
+				<div class="screen">
+					<div class="screen-front"></div>
+					<div class="screen-back"></div>
+					<div class="screen-left"></div>
+					<div class="screen-right"></div>
+					<div class="screen-bottom"></div>
+					<div class="screen-top"></div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>
+<script type="text/javascript">
+	var introAnimation = true;
+
+	$('body').on('mousemove', function(e) {
+
+		if(!introAnimation) {
+
+			var x = e.pageX;
+			var y = e.pageY;
+
+			$('.screen').css('animation', 'none');
+
+			$('.animation-inner').css({
+				'animation': 'none',
+				'transform': 'rotateY(' + x + 'deg) rotateX(' + y + 'deg)'
+			});
+		}
+
+	});
+
+	$('body').on('mousedown', function() {
+		$('body').addClass('click');
+	});
+
+	$('body').on('mouseup mouseleave', function() {
+		$('body').removeClass('click');
+	});
+
+	setTimeout(function() {
+		introAnimation = false;
+	}, 5000);
+</script>

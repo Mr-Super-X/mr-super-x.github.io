@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#canvas {
+				position: fixed;
+			}
+		</style>
+	</head>
+
+	<body>
+		<canvas id="canvas"></canvas>
+	</body>
+
+</html>
+<script type="text/javascript">
+	const canvas = document.querySelector("#canvas");
+	const context = canvas.getContext("2d", {
+		alpha: false
+	});
+
+	let vw = canvas.width = window.innerWidth;
+	let vh = canvas.height = window.innerHeight;
+
+	// let boxSize = Math.min(vw / 6, vh / 4);
+	let boxSize = 80;
+
+	const maxLevel = 10;
+	const roundTo = 1000;
+
+	const color1 = {
+		h: 69,
+		s: 75,
+		l: 51
+	};
+	const color2 = {
+		h: 288,
+		s: 98,
+		l: 17
+	};
+
+	const colors = getColors(color1, color2, maxLevel + 2);
+
+	const mouse = {
+		x: vw / 2,
+		y: vh / 2
+	};
+
+	let count = 0;
+	let lean = 0;
+	let scale = 0;
+	let resized = false;
+	let requestId = null;
+
+	let x = (vw - boxSize) / 2;
+	let y = vh;
+
+	//
+	// CALC BRANCHES
+	// ================================================================================
+	const calcBranches = (function() {
+
+		let memo = {};
+
+		let memoize = function(width, scale, lean) {
+
+			const memoKey = `${width}-${scale}-${lean}`;
+
+			if(!memo[memoKey]) {
+
+				const currentH = width * scale;
+
+				const result = {
+					leftSize: Math.sqrt(currentH ** 2 + (width * (0.5 - lean)) ** 2),
+					rightSize: Math.sqrt(currentH ** 2 + (width * (0.5 + lean)) ** 2),
+					leftAngle: Math.atan(currentH / ((0.5 - lean) * width)),
+					rightAngle: Math.atan(currentH / ((0.5 + lean) * width))
+				};
+
+				memo[memoKey] = result;
+
+				memoize.count++;
+			}
+			return memo[memoKey];
+		}
+
+		memoize.count = 0;
+		memoize.cache = memo;
+		return memoize;
+	})();
+
+	window.addEventListener("resize", onResize);
+	window.addEventListener("mousemove", onMouseMove);
+	update();
+
+	//
+	// DRAW TREE
+	// ================================================================================
+	function drawTree(size, scale, lean, level) {
+
+		if(size < 1) {
+			count += 2;
+			return;
+		}
+
+		size = Math.round(size * roundTo) / roundTo;
+
+		const {
+			leftSize,
+			leftAngle,
+			rightSize,
+			rightAngle
+		} = calcBranches(size, scale, lean);
+
+		context.save();
+		context.fillRect(0, 0, size, -size);
+
+		context.fillStyle = colors[level];
+
+		context.translate(0, -size);
+		context.rotate(-leftAngle);
+
+		if(level) {
+			drawTree(leftSize, scale, lean, level - 1);
+		} else {
+			context.fillRect(0, 0, leftSize, -leftSize);
+		}
+
+		context.translate(leftSize, 0);
+		context.rotate(rightAngle + leftAngle);
+
+		if(level) {
+			drawTree(rightSize, scale, lean, level - 1);
+		} else {
+			context.fillRect(0, 0, rightSize, -rightSize);
+		}
+
+		context.restore();
+	}
+
+	//
+	// UPDATE
+	// ================================================================================
+	function update() {
+
+		if(resized) {
+
+			vw = canvas.width = window.innerWidth;
+			vh = canvas.height = window.innerHeight;
+
+			// boxSize = Math.min(vw / 6, vh / 4);
+
+			x = (vw - boxSize) / 2;
+			y = vh;
+		}
+
+		scale = Math.round(map(mouse.y, vh, 0, 0, 0.8) * roundTo) / roundTo;
+		lean = Math.round(map(mouse.x, 0, vw, 0.5, -0.5) * roundTo) / roundTo;
+
+		context.fillStyle = "white";
+		context.fillRect(0, 0, vw, vh);
+
+		context.save();
+		context.fillStyle = colors[maxLevel + 1];
+		context.translate(x, y);
+
+		drawTree(boxSize, scale, lean, maxLevel, maxLevel);
+
+		context.restore();
+
+		resized = false;
+		requestId = null;
+	}
+
+	//
+	// GET COLORS
+	// ================================================================================
+	function getColors(c1, c2, steps) {
+
+		const colors = [];
+
+		for(let i = 0; i < steps; i++) {
+
+			const t = i / (steps - 1);
+
+			const h = Math.round(lerp(c1.h, c2.h, t));
+			const s = Math.round(lerp(c1.s, c2.s, t));
+			const l = Math.round(lerp(c1.l, c2.l, t));
+
+			colors.push(`hsl(${h},${s}%,${l}%)`);
+		}
+
+		return colors;
+	}
+
+	//
+	// ON MOUSE MOVE
+	// ================================================================================
+	function onMouseMove(event) {
+
+		mouse.x = event.clientX;
+		mouse.y = event.clientY;
+
+		if(!requestId) {
+			requestId = requestAnimationFrame(update);
+		}
+	}
+
+	//
+	// ON RESIZE
+	// ================================================================================
+	function onResize() {
+		resized = true;
+		if(!requestId) {
+			requestId = requestAnimationFrame(update);
+		}
+	}
+
+	function lerp(a, b, t) {
+		return a + (b - a) * t;
+	}
+
+	function map(x, a, b, c, d) {
+		return c + (d - c) * ((x - a) / (b - a)) || 0;
+	}
+</script>
