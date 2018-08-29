@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas旋转</title>
+    <style>
+        body,
+        html {
+            position: absolute;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            touch-action: none;
+            content-zooming: none;
+            background: #000;
+        }
+
+        canvas {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            user-select: none;
+            background: #000;
+        }
+    </style>
+</head>
+<body>
+<canvas></canvas>
+</body>
+</html>
+<script>
+    "use strict";
+    {
+        class Point {
+            constructor (d) {
+                this.vx = 0.0;
+                this.vy = 0.0;
+                this.x = canvas.width / 2 + Math.cos(d / 10) * 400;
+                this.y = canvas.height / 2 + Math.sin(d / 10) * 400;
+                this.d = d;
+            }
+            draw (x, y) {
+                this.vx = this.vx * 0.996 - 0.05 * (this.x - x) / this.d;
+                this.vy = this.vy * 0.996 - 0.05 * (this.y - y) / this.d;
+                this.x += this.vx;
+                this.y += this.vy;
+                ctx.moveTo(x, y);
+                ctx.lineTo(this.x, this.y);
+                ctx.fillRect(this.x, this.y, 4, 4);
+            }
+        }
+        const canvas = {
+            init() {
+                this.elem = document.querySelector("canvas");
+                this.resize();
+                window.addEventListener("resize", () => this.resize(), false);
+                return this.elem.getContext("2d");
+            },
+            resize() {
+                this.width = this.elem.width = this.elem.offsetWidth;
+                this.height = this.elem.height = this.elem.offsetHeight;
+            }
+        };
+        const ctx = canvas.init();
+        const pointer = {
+            x: canvas.width / 2,
+            y: canvas.height / 2,
+            move(e, touch) {
+                const pointer = touch ? e.targetTouches[0] : e;
+                this.x = pointer.clientX;
+                this.y = pointer.clientY;
+            },
+            init() {
+                window.addEventListener("mousemove", e => this.move(e, false), false);
+                canvas.elem.addEventListener("touchmove", e => this.move(e, true), false);
+            }
+        };
+        pointer.init();
+        const points = [];
+        let d = 10;
+        for (let i = 0; i < 800; i++) {
+            points.push(new Point(d += 0.1));
+        }
+        ctx.fillStyle = '#fff';
+        ctx.strokeStyle = "#320";
+        const run = () => {
+            requestAnimationFrame(run);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.globalCompositeOperation = "lighter";
+            ctx.beginPath();
+            for (const p of points) {
+                p.draw(pointer.x, pointer.y);
+            }
+            ctx.stroke();
+        }
+        run();
+    }
+</script>
